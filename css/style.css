@@ -1,0 +1,1363 @@
+/* ==============================
+   1. CONFIGURAÇÕES GERAIS
+================================ */
+
+:root {
+    --fundo: #090909;
+    --fundo-secundario: #101010;
+    --cartao: #181818;
+    --cartao-hover: #202020;
+    --borda: #303030;
+    --branco: #f5f5f5;
+    --cinza: #b0b0b0;
+    --cinza-escuro: #777777;
+    --transicao: 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--fundo);
+    color: var(--branco);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    font: inherit;
+}
+
+.container {
+    width: min(1120px, 90%);
+    margin-inline: auto;
+}
+
+::selection {
+    background: var(--branco);
+    color: var(--fundo);
+}
+
+
+/* ==============================
+   2. CABEÇALHO E NAVEGAÇÃO
+================================ */
+
+.cabecalho {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(9, 9, 9, 0.92);
+    border-bottom: 1px solid var(--borda);
+    backdrop-filter: blur(12px);
+}
+
+.navegacao {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: var(--branco);
+    transition: opacity var(--transicao);
+}
+
+.logo:hover {
+    opacity: 0.7;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.link-menu {
+    display: inline-block;
+    color: var(--cinza);
+    font-size: 14px;
+    transition: color var(--transicao);
+}
+
+.link-menu:hover,
+.link-menu.ativo {
+    color: var(--branco);
+}
+
+.link-menu.ativo {
+    font-weight: 700;
+}
+
+
+/* BOTÃO DO MENU MOBILE */
+
+.menu-toggle {
+    display: none;
+    width: 42px;
+    height: 42px;
+    padding: 9px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    background: transparent;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--branco);
+    transition: transform var(--transicao), opacity var(--transicao);
+}
+
+.menu-toggle[aria-expanded="true"] span:first-child {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle[aria-expanded="true"] span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ==============================
+   3. APRESENTAÇÃO INICIAL
+================================ */
+
+.hero {
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 90px 0;
+    background:
+        radial-gradient(
+            ellipse at 50% 35%,
+            rgba(255, 255, 255, 0.055),
+            transparent 65%
+        ),
+        var(--fundo);
+}
+
+.hero-conteudo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    animation: aparecer 0.8s ease both;
+}
+
+.etiqueta {
+    display: inline-block;
+    padding: 7px 13px;
+    border: 1px solid #383838;
+    border-radius: 30px;
+    color: #c8c8c8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.hero h1 {
+    max-width: 850px;
+    font-size: clamp(36px, 5.5vw, 64px);
+    line-height: 1.12;
+    letter-spacing: -2.5px;
+    font-weight: 800;
+}
+
+.hero h1 span {
+    display: block;
+    color: #a8a8a8;
+}
+
+.hero p {
+    max-width: 570px;
+    color: var(--cinza);
+    font-size: 16px;
+}
+
+.botao {
+    min-height: 46px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 22px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    transition:
+        background var(--transicao),
+        color var(--transicao),
+        transform var(--transicao);
+}
+
+.botao-principal {
+    background: var(--branco);
+    color: #111111;
+}
+
+.botao-principal:hover {
+    background: #d6d6d6;
+    transform: translateY(-3px);
+}
+
+.botao:focus-visible,
+a:focus-visible,
+button:focus-visible {
+    outline: 2px solid var(--branco);
+    outline-offset: 4px;
+}
+
+
+/* ==============================
+   4. PROJETOS EM DESTAQUE
+================================ */
+
+.destaques {
+    padding: 60px 0 100px;
+    background: var(--fundo-secundario);
+    border-top: 1px solid #1c1c1c;
+}
+
+.secao-cabecalho {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 32px;
+}
+
+.subtitulo {
+    color: var(--cinza-escuro);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.secao-cabecalho h2 {
+    margin-top: 5px;
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -1px;
+}
+
+.link-ver-todos {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--cinza);
+    font-size: 13px;
+    transition: color var(--transicao);
+}
+
+.link-ver-todos:hover {
+    color: var(--branco);
+}
+
+.grade-projetos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.cartao-projeto {
+    min-width: 0;
+    overflow: hidden;
+    background: var(--cartao);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+    transition:
+        transform var(--transicao),
+        border-color var(--transicao),
+        background var(--transicao);
+}
+
+.cartao-projeto:hover {
+    transform: translateY(-5px);
+    border-color: #626262;
+    background: var(--cartao-hover);
+}
+
+
+/* ==============================
+   5. ILUSTRAÇÕES DOS PROJETOS
+================================ */
+
+.projeto-imagem {
+    min-height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #303030,
+            #171717 65%
+        );
+    border-bottom: 1px solid var(--borda);
+}
+
+.ilustracao {
+    width: 80%;
+    min-height: 145px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 1px solid #414141;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+    transition: transform 0.4s ease;
+}
+
+.cartao-projeto:hover .ilustracao {
+    transform: scale(1.04);
+}
+
+.ilustracao-icone {
+    font-size: 48px;
+    line-height: 1;
+    color: #f0f0f0;
+}
+
+.ilustracao-linha {
+    width: 50px;
+    height: 2px;
+    background: #777777;
+}
+
+.ilustracao-texto {
+    color: #929292;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.imagem-cofre {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #333333,
+            #141414 70%
+        );
+}
+
+.imagem-futuro {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #292929,
+            #141414 70%
+        );
+}
+
+
+/* ==============================
+   6. INFORMAÇÕES DOS CARTÕES
+================================ */
+
+.projeto-info {
+    padding: 22px;
+}
+
+.projeto-categoria {
+    color: var(--cinza-escuro);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.projeto-info h3 {
+    margin-top: 8px;
+    font-size: 21px;
+    line-height: 1.3;
+}
+
+.projeto-info p {
+    margin-top: 10px;
+    color: var(--cinza);
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 16px;
+}
+
+.tecnologias span {
+    padding: 5px 9px;
+    border: 1px solid #383838;
+    border-radius: 5px;
+    color: #cccccc;
+    font-size: 10px;
+}
+
+.link-projeto {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 22px;
+    color: var(--branco);
+    font-size: 13px;
+    font-weight: 700;
+    transition: color var(--transicao);
+}
+
+.link-projeto:hover {
+    color: #aaaaaa;
+}
+
+.cartao-futuro .projeto-imagem {
+    cursor: default;
+}
+
+
+/* ==============================
+   7. RODAPÉ
+================================ */
+
+.rodape {
+    background: #080808;
+    border-top: 1px solid var(--borda);
+}
+
+.rodape-conteudo {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.rodape p {
+    color: var(--cinza-escuro);
+    font-size: 12px;
+}
+
+
+/* ==============================
+   8. ANIMAÇÕES
+================================ */
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
+/* ==============================
+   9. TABLETS
+================================ */
+
+@media (max-width: 900px) {
+    .grade-projetos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .hero {
+        min-height: 460px;
+    }
+}
+
+
+/* ==============================
+   10. CELULARES
+================================ */
+
+@media (max-width: 600px) {
+    .navegacao {
+        min-height: 66px;
+    }
+
+    .logo {
+        font-size: 24px;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .menu {
+        position: absolute;
+        top: calc(100% + 1px);
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 10px 5%;
+        background: #101010;
+        border-bottom: 1px solid var(--borda);
+    }
+
+    .menu.aberto {
+        display: flex;
+    }
+
+    .link-menu {
+        display: block;
+        padding: 13px 0;
+    }
+
+    .hero {
+        min-height: 430px;
+        padding: 70px 0;
+    }
+
+    .hero-conteudo {
+        gap: 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(34px, 9vw, 46px);
+        letter-spacing: -1.5px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .destaques {
+        padding: 48px 0 65px;
+    }
+
+    .secao-cabecalho {
+        align-items: start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .grade-projetos {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .projeto-imagem {
+        min-height: 180px;
+    }
+
+    .projeto-info {
+        padding: 20px;
+    }
+
+    .rodape-conteudo {
+        min-height: 65px;
+    }
+
+    .rodape p {
+        font-size: 11px;
+    }
+}
+
+
+/* ==============================
+   PÁGINA DE PROJETOS
+============================== */
+
+.secao-projetos {
+    padding: 100px 0 120px;
+}
+
+.titulo-secao {
+    max-width: 650px;
+    margin-bottom: 60px;
+}
+
+.subtitulo {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: #888;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+}
+
+.titulo-secao h1 {
+    margin-bottom: 20px;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 600;
+    letter-spacing: -3px;
+}
+
+.titulo-secao h1 span,
+.logo span {
+    color: #888;
+}
+
+.titulo-secao p {
+    max-width: 500px;
+    color: #999;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* Grade */
+
+.grade-projetos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+/* Cards */
+
+.cartao-projeto {
+    overflow: hidden;
+    background: #101010;
+    border: 1px solid #252525;
+    border-radius: 12px;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.cartao-projeto:hover {
+    transform: translateY(-6px);
+    border-color: #555;
+}
+
+/* Área visual */
+
+.visual-projeto {
+    position: relative;
+    min-height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #080808;
+    border-bottom: 1px solid #252525;
+    text-decoration: none;
+}
+
+.visual-legenda {
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+    color: #777;
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+}
+
+/* Visual J.A.R.V.I.S. */
+
+.visual-jarvis {
+    background:
+        radial-gradient(
+            circle,
+            #202020 0%,
+            #101010 35%,
+            #080808 75%
+        );
+}
+
+.jarvis-circulo {
+    width: 125px;
+    height: 125px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #777;
+    border-radius: 50%;
+    box-shadow: 0 0 35px #ffffff0a;
+    animation: pulsar-jarvis 4s ease-in-out infinite;
+}
+
+.jarvis-nucleo {
+    width: 55px;
+    height: 55px;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    box-shadow: 0 0 25px #ffffff12;
+}
+
+@keyframes pulsar-jarvis {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
+    }
+
+    50% {
+        transform: scale(1.06);
+        opacity: 1;
+    }
+}
+
+/* Visual Cofre Digital */
+
+.visual-cofre {
+    background:
+        radial-gradient(
+            circle,
+            #202020 0%,
+            #101010 45%,
+            #080808 100%
+        );
+}
+
+.cofre-icone {
+    position: relative;
+    width: 95px;
+    height: 110px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    box-shadow: 0 0 30px #ffffff08;
+}
+
+.cofre-fechadura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 27px;
+    height: 27px;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cofre-fechadura::after {
+    content: "";
+    position: absolute;
+    top: 8px;
+    left: 11px;
+    width: 3px;
+    height: 9px;
+    background: #aaa;
+}
+
+/* Projeto futuro */
+
+.visual-futuro {
+    background:
+        radial-gradient(
+            circle,
+            #181818 0%,
+            #080808 75%
+        );
+}
+
+.futuro-simbolo {
+    color: #777;
+    font-size: 5rem;
+    font-weight: 200;
+    transition: transform 0.3s ease;
+}
+
+.cartao-projeto:hover .futuro-simbolo {
+    transform: rotate(90deg);
+}
+
+/* Informações */
+
+.info-projeto {
+    padding: 25px;
+}
+
+.numero-projeto {
+    color: #777;
+    font-size: 0.68rem;
+    letter-spacing: 1.5px;
+}
+
+.info-projeto h2 {
+    margin: 15px 0 12px;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.info-projeto p {
+    min-height: 78px;
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+/* Tecnologias */
+
+.tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 22px 0;
+}
+
+.tecnologias span {
+    padding: 7px 10px;
+    color: #aaa;
+    background: #191919;
+    border: 1px solid #292929;
+    border-radius: 5px;
+    font-size: 0.7rem;
+}
+
+/* Links */
+
+.link-projeto {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 5px;
+    color: #eee;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.link-projeto:hover {
+    color: #999;
+}
+
+.link-projeto span {
+    transition: transform 0.2s ease;
+}
+
+.link-projeto:hover span {
+    transform: translate(3px, -3px);
+}
+
+.indisponivel {
+    color: #666;
+    cursor: default;
+}
+
+/* Responsividade */
+
+@media (max-width: 1000px) {
+    .grade-projetos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .secao-projetos {
+        padding: 70px 0 85px;
+    }
+
+    .titulo-secao {
+        margin-bottom: 40px;
+    }
+
+    .titulo-secao h1 {
+        letter-spacing: -1.5px;
+    }
+
+    .grade-projetos {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .visual-projeto {
+        min-height: 220px;
+    }
+
+    .info-projeto p {
+        min-height: auto;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .jarvis-circulo {
+        animation: none;
+    }
+
+    .cartao-projeto,
+    .futuro-simbolo,
+    .link-projeto span {
+        transition: none;
+    }
+}
+
+/* =====================================
+   11. AJUSTES DA PÁGINA INICIAL
+===================================== */
+
+/* Etiqueta do destaque */
+.hero-etiqueta {
+    display: inline-block;
+    padding: 7px 13px;
+    border: 1px solid #383838;
+    border-radius: 30px;
+    color: #c8c8c8;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* Texto em destaque */
+.hero h1 span,
+.detalhe-intro h1 span {
+    color: #999;
+}
+
+/* Botão principal */
+.botao {
+    background: var(--branco);
+    color: #111;
+}
+
+.botao:hover {
+    background: #d6d6d6;
+    transform: translateY(-3px);
+}
+
+/* Seção de destaque da página inicial */
+.secao-destaques {
+    padding: 60px 0 100px;
+    background: var(--fundo-secundario);
+    border-top: 1px solid #1c1c1c;
+}
+
+.titulo-secao {
+    margin-bottom: 32px;
+}
+
+.titulo-secao h2 {
+    margin-top: 5px;
+    font-size: clamp(25px, 3vw, 34px);
+    letter-spacing: -1px;
+}
+
+.titulo-secao > div {
+    margin-bottom: 0;
+}
+
+.titulo-secao > a {
+    margin-top: 0;
+}
+
+/* Ilustração do Cofre na página inicial */
+.visual-projeto.visual-cofre {
+    position: relative;
+    min-height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background:
+        radial-gradient(circle, #202020 0%, #101010 45%, #080808 100%);
+    border-bottom: 1px solid var(--borda);
+}
+
+.visual-cofre .cofre-icone {
+    width: 95px;
+    height: 110px;
+}
+
+.visual-cofre .visual-legenda {
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+}
+
+/* Informações do cartão */
+.info-projeto {
+    padding: 25px;
+}
+
+.info-projeto h3 {
+    margin: 15px 0 12px;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.info-projeto p {
+    min-height: 0;
+    color: #999;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.info-projeto .tecnologias {
+    margin: 22px 0;
+}
+
+.info-projeto .link-projeto {
+    margin-top: 5px;
+}
+
+/* =====================================
+   12. PÁGINA DO COFRE DIGITAL
+===================================== */
+
+.detalhe-projeto {
+    padding-bottom: 90px;
+}
+
+.detalhe-intro {
+    padding-top: 75px;
+    padding-bottom: 45px;
+    animation: aparecer 0.8s ease both;
+}
+
+.detalhe-intro > .link-projeto {
+    margin: 0 0 45px;
+    color: var(--cinza);
+}
+
+.detalhe-intro > .subtitulo {
+    display: block;
+    margin-bottom: 16px;
+}
+
+.detalhe-intro h1 {
+    margin-bottom: 20px;
+    font-size: clamp(42px, 7vw, 76px);
+    line-height: 1.1;
+    letter-spacing: -3px;
+}
+
+.detalhe-intro > p {
+    max-width: 650px;
+    color: var(--cinza);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.detalhe-intro .tecnologias {
+    margin: 24px 0;
+}
+
+.detalhe-acoes {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 14px;
+    margin-top: 28px;
+}
+
+.botao-download,
+.botao-secundario {
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 12px 20px;
+    border: 1px solid var(--borda);
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 700;
+    transition:
+        background var(--transicao),
+        color var(--transicao),
+        border-color var(--transicao),
+        transform var(--transicao);
+}
+
+.botao-download {
+    background: var(--branco);
+    color: #111;
+    border-color: var(--branco);
+}
+
+.botao-download:hover {
+    background: #d6d6d6;
+    transform: translateY(-2px);
+}
+
+.botao-secundario {
+    background: transparent;
+    color: var(--branco);
+}
+
+.botao-secundario:hover {
+    background: var(--cartao-hover);
+    border-color: #666;
+}
+
+/* Ilustração grande do cofre */
+.capa-cofre {
+    min-height: 330px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    background:
+        radial-gradient(ellipse at center, #202020 0%, #101010 45%, #090909 80%);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+}
+
+.cofre-grande {
+    width: 150px;
+    height: 170px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #777;
+    border-radius: 12px;
+    box-shadow: 0 0 45px #ffffff0a;
+    animation: flutuar-cofre 5s ease-in-out infinite;
+}
+
+.cofre-anel {
+    width: 85px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #888;
+    border-radius: 50%;
+}
+
+.cofre-centro {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    color: #eee;
+    font-size: 20px;
+}
+
+.capa-cofre > p {
+    color: var(--cinza);
+    font-size: 13px;
+}
+
+@keyframes flutuar-cofre {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Blocos explicativos */
+.blocos-detalhe {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    padding-top: 65px;
+    padding-bottom: 65px;
+}
+
+.bloco-detalhe {
+    padding: 28px;
+    background: var(--cartao);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+}
+
+.bloco-detalhe .subtitulo {
+    display: block;
+    margin-bottom: 18px;
+}
+
+.bloco-detalhe h2 {
+    margin-bottom: 14px;
+    font-size: 23px;
+}
+
+.bloco-detalhe p {
+    color: var(--cinza);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* Área de download */
+.bloco-download {
+    padding: 35px;
+    background: var(--fundo-secundario);
+    border: 1px solid var(--borda);
+    border-radius: 12px;
+}
+
+.download-texto .subtitulo {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.download-texto h2 {
+    margin-bottom: 14px;
+    font-size: clamp(25px, 4vw, 36px);
+    letter-spacing: -1px;
+}
+
+.download-texto p {
+    max-width: 650px;
+    color: var(--cinza);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.bloco-download > .botao-download {
+    margin-top: 24px;
+}
+
+.aviso-download {
+    margin-top: 18px;
+    color: var(--cinza-escuro);
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* =====================================
+   13. RESPONSIVIDADE EXTRA
+===================================== */
+
+@media (max-width: 650px) {
+    .secao-destaques {
+        padding: 48px 0 65px;
+    }
+
+    .detalhe-intro {
+        padding-top: 45px;
+    }
+
+    .detalhe-intro > .link-projeto {
+        margin-bottom: 35px;
+    }
+
+    .detalhe-intro h1 {
+        letter-spacing: -1.5px;
+    }
+
+    .detalhe-intro > p {
+        font-size: 14px;
+    }
+
+    .detalhe-acoes {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .detalhe-acoes a {
+        width: 100%;
+    }
+
+    .capa-cofre {
+        min-height: 280px;
+    }
+
+    .blocos-detalhe {
+        grid-template-columns: 1fr;
+        padding-top: 45px;
+        padding-bottom: 45px;
+    }
+
+    .bloco-download {
+        padding: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .cofre-grande {
+        animation: none;
+    }
+}
+
+/* Acabamento da página Meus Projetos */
+
+.secao-projetos {
+    min-height: 70vh;
+    animation: aparecer 0.7s ease both;
+}
+
+.secao-projetos .titulo-secao {
+    margin-bottom: 45px;
+}
+
+.secao-projetos .titulo-secao h1 span {
+    color: #888;
+}
+
+.secao-projetos .grade-projetos {
+    align-items: start;
+}
+
+.secao-projetos .cartao-projeto {
+    height: 100%;
+}
+
+.secao-projetos .info-projeto h2 {
+    margin: 15px 0 12px;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.secao-projetos .info-projeto p {
+    min-height: 0;
+}
+
+.secao-projetos .info-projeto .tecnologias {
+    margin: 22px 0;
+}
+
+.secao-projetos .info-projeto .link-projeto {
+    margin-top: 5px;
+}
+
+@media (max-width: 650px) {
+    .secao-projetos {
+        padding: 65px 0 80px;
+    }
+
+    .secao-projetos .titulo-secao {
+        margin-bottom: 35px;
+    }
+}
