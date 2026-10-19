@@ -1361,3 +1361,140 @@ button:focus-visible {
         margin-bottom: 35px;
     }
 }
+
+/* =====================================
+   14. PC OPTIMIZER
+===================================== */
+
+.visual-optimizer {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #292929 0%,
+            #151515 48%,
+            #080808 100%
+        );
+}
+
+.optimizer-icone {
+    position: relative;
+    width: 115px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #777;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #202020, #101010);
+    box-shadow: 0 0 35px #ffffff0a;
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.optimizer-icone::before {
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    height: 4px;
+    border-radius: 3px;
+    background: #777;
+}
+
+.optimizer-icone::after {
+    content: "";
+    width: 35px;
+    height: 35px;
+    border: 2px solid #aaa;
+    border-right-color: #555;
+    border-radius: 50%;
+    box-shadow: 0 0 15px #ffffff0a;
+}
+
+.cartao-projeto:hover .optimizer-icone {
+    transform: translateY(-3px);
+    border-color: #aaa;
+}
+
+.visual-optimizer .visual-legenda {
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .optimizer-icone {
+        transition: none;
+    }
+}
+
+
+/* =====================================
+   15. PIXEL ICO
+===================================== */
+
+.visual-pixel-ico {
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            #292929 0%,
+            #151515 48%,
+            #080808 100%
+        );
+}
+
+.pixel-icone {
+    width: 100px;
+    height: 100px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 5px;
+    padding: 10px;
+    border: 1px solid #777;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #202020, #101010);
+    box-shadow: 0 0 35px #ffffff0a;
+    transform: rotate(-5deg);
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.pixel-icone span {
+    border: 1px solid #999;
+    border-radius: 3px;
+    background: #292929;
+}
+
+.pixel-icone span:nth-child(2),
+.pixel-icone span:nth-child(4),
+.pixel-icone span:nth-child(6),
+.pixel-icone span:nth-child(8) {
+    background: #777;
+    border-color: #aaa;
+}
+
+.pixel-icone span:nth-child(5) {
+    background: #f5f5f5;
+    border-color: #f5f5f5;
+}
+
+.cartao-projeto:hover .pixel-icone {
+    transform: rotate(0deg) scale(1.06);
+    border-color: #aaa;
+}
+
+.visual-pixel-ico .visual-legenda {
+    position: absolute;
+    bottom: 18px;
+    left: 20px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pixel-icone {
+        transition: none;
+    }
+}
