@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -36,13 +37,12 @@
             </button>
 
             <nav id="menu" class="menu">
-                <a href="index.html" class="ativo">Início</a>
-                <a href="projetos.html">Projetos</a>
+                <a href="index.html" class="link-menu ativo">Início</a>
+                <a href="projetos.html" class="link-menu">Projetos</a>
             </nav>
 
         </div>
     </header>
-
 
     <!-- Conteúdo principal -->
     <main>
@@ -73,26 +73,25 @@
             </div>
         </section>
 
-
-        <!-- Projeto em destaque -->
+        <!-- Projetos em destaque -->
         <section class="secao-destaques">
             <div class="container">
 
                 <div class="titulo-secao">
                     <div>
                         <span class="subtitulo">PORTFÓLIO</span>
-                        <h2>Projeto em destaque</h2>
+                        <h2>Projetos em destaque</h2>
                     </div>
 
                     <a href="projetos.html" class="link-projeto">
-                        Ver projetos <span aria-hidden="true">↗</span>
+                        Ver projetos
+                        <span aria-hidden="true">↗</span>
                     </a>
                 </div>
 
-
                 <div class="grade-projetos">
 
-                    <!-- Cofre Digital -->
+                    <!-- Projeto 01: Cofre Digital -->
                     <article class="cartao-projeto">
 
                         <a
@@ -111,21 +110,22 @@
 
                         <div class="info-projeto">
 
-                            <div class="numero-projeto">
+                            <span class="numero-projeto">
                                 PROJETO 01
-                            </div>
+                            </span>
 
                             <h3>Cofre Digital</h3>
 
                             <p>
-                                Um aplicativo desenvolvido para ajudar
-                                a organizar e proteger informações
-                                digitais em um só lugar.
+                                Aplicativo para desktop desenvolvido
+                                para ajudar a organizar e proteger
+                                informações digitais em um só lugar.
                             </p>
 
                             <div class="tecnologias">
                                 <span>Python</span>
                                 <span>Desktop</span>
+                                <span>Windows</span>
                             </div>
 
                             <a
@@ -140,13 +140,63 @@
 
                     </article>
 
+                    <!-- Projeto 02: PC Optimizer -->
+                    <article class="cartao-projeto">
+
+                        <a
+                            href="https://www.mediafire.com/file/gr42xhf5uawu7mx/PC-Optimizer.rar/file"
+                            class="visual-projeto visual-optimizer"
+                            aria-label="Baixar o PC Optimizer"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div class="optimizer-icone" aria-hidden="true"></div>
+
+                            <span class="visual-legenda">
+                                OTIMIZAÇÃO DO WINDOWS
+                            </span>
+                        </a>
+
+                        <div class="info-projeto">
+
+                            <span class="numero-projeto">
+                                PROJETO 02
+                            </span>
+
+                            <h3>PC Optimizer</h3>
+
+                            <p>
+                                Ferramenta para Windows com recursos
+                                de otimização e manutenção do sistema,
+                                desenvolvida em Python.
+                            </p>
+
+                            <div class="tecnologias">
+                                <span>Python</span>
+                                <span>PySide6</span>
+                                <span>Windows</span>
+                            </div>
+
+                            <a
+                                href="https://www.mediafire.com/file/gr42xhf5uawu7mx/PC-Optimizer.rar/file"
+                                class="link-projeto"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Baixar projeto
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
                 </div>
 
             </div>
         </section>
 
     </main>
-
 
     <!-- Rodapé -->
     <footer class="rodape">
@@ -160,4 +210,53 @@
                 Explorando possibilidades através da tecnologia.
             </p>
 
-            <span
+            <span class="copyright">
+                © 2026 PyHub. Todos os direitos reservados.
+            </span>
+
+        </div>
+    </footer>
+
+    <!-- JavaScript do menu -->
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector("#menu");
+
+        if (menuToggle && menu) {
+            menuToggle.addEventListener("click", () => {
+                const aberto =
+                    menuToggle.getAttribute("aria-expanded") === "true";
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(!aberto)
+                );
+
+                menu.classList.toggle("aberto", !aberto);
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    aberto ? "Abrir menu" : "Fechar menu"
+                );
+            });
+
+            menu.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    menu.classList.remove("aberto");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Abrir menu");
+                });
+            });
+
+            document.addEventListener("keydown", (evento) => {
+                if (evento.key === "Escape") {
+                    menu.classList.remove("aberto");
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Abrir menu");
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
