@@ -43,7 +43,6 @@
         </div>
     </header>
 
-
     <!-- Conteúdo principal -->
     <main>
 
@@ -67,11 +66,10 @@
 
                 </div>
 
-
                 <!-- Grade de projetos -->
                 <div class="grade-projetos">
 
-                    <!-- Cofre Digital -->
+                    <!-- Projeto 01: Cofre Digital -->
                     <article class="cartao-projeto">
 
                         <a
@@ -80,7 +78,7 @@
                             aria-label="Conhecer o Cofre Digital"
                         >
 
-                            <div class="cofre-icone">
+                            <div class="cofre-icone" aria-hidden="true">
                                 <div class="cofre-fechadura"></div>
                             </div>
 
@@ -101,7 +99,7 @@
                             <p>
                                 Aplicativo para desktop desenvolvido
                                 em Python, com foco na organização
-                                de informações digitais.
+                                e proteção de informações digitais.
                             </p>
 
                             <div class="tecnologias">
@@ -122,13 +120,131 @@
 
                     </article>
 
+                    <!-- Projeto 02: PC Optimizer -->
+                    <article class="cartao-projeto">
+
+                        <a
+                            href="https://www.mediafire.com/file/gr42xhf5uawu7mx/PC-Optimizer.rar/file"
+                            class="visual-projeto visual-optimizer"
+                            aria-label="Baixar o PC Optimizer"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+
+                            <div class="optimizer-icone" aria-hidden="true"></div>
+
+                            <span class="visual-legenda">
+                                OTIMIZAÇÃO DO WINDOWS
+                            </span>
+
+                        </a>
+
+                        <div class="info-projeto">
+
+                            <span class="numero-projeto">
+                                PROJETO 02
+                            </span>
+
+                            <h2>PC Optimizer</h2>
+
+                            <p>
+                                Ferramenta para Windows com recursos
+                                de otimização e manutenção do sistema,
+                                desenvolvida em Python.
+                            </p>
+
+                            <div class="tecnologias">
+                                <span>Python</span>
+                                <span>PySide6</span>
+                                <span>Windows</span>
+                            </div>
+
+                            <a
+                                href="https://www.mediafire.com/file/gr42xhf5uawu7mx/PC-Optimizer.rar/file"
+                                class="link-projeto"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Baixar PC Optimizer
+                                <span aria-hidden="true">↗</span>
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                    <!-- Projeto 03: Pixel ICO -->
+                    <article class="cartao-projeto">
+
+                        <div
+                            class="visual-projeto visual-pixel-ico"
+                            role="img"
+                            aria-label="Pixel ICO, conversor de imagens para ícones"
+                        >
+
+                            <div class="pixel-icone" aria-hidden="true">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+
+                            <span class="visual-legenda">
+                                CONVERSÃO DE IMAGENS
+                            </span>
+
+                        </div>
+
+                        <div class="info-projeto">
+
+                            <span class="numero-projeto">
+                                PROJETO 03
+                            </span>
+
+                            <h2>Pixel ICO</h2>
+
+                            <p>
+                                Aplicativo para Windows que converte
+                                imagens JPG, JPEG e PNG em arquivos
+                                ICO, facilitando a criação de ícones
+                                para programas e atalhos.
+                            </p>
+
+                            <div class="tecnologias">
+                                <span>Python</span>
+                                <span>Tkinter</span>
+                                <span>Pillow</span>
+                                <span>Windows</span>
+                            </div>
+
+                            <!-- Adicione o link de download quando estiver hospedado -->
+                            
+                            <a
+                                href="https://www.mediafire.com/file/5153hezkbx34obw/Pixel+Ico.rar/file"
+                                class="link-projeto"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                Baixar Pixel ICO
+                                <span aria-hidden="true">↗</span>
+                                </a>
+
+
+                        </div>
+
+                    </article>
+
                 </div>
 
             </div>
         </section>
 
     </main>
-
 
     <!-- Rodapé -->
     <footer class="rodape">
@@ -149,5 +265,48 @@
         </div>
     </footer>
 
+    <!-- JavaScript do menu -->
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const menu = document.querySelector("#menu");
 
-    <script
+        if (menuToggle && menu) {
+            menuToggle.addEventListener("click", () => {
+                const aberto =
+                    menuToggle.getAttribute("aria-expanded") === "true";
+
+                menuToggle.setAttribute(
+                    "aria-expanded",
+                    String(!aberto)
+                );
+
+                menu.classList.toggle("aberto", !aberto);
+
+                menuToggle.setAttribute(
+                    "aria-label",
+                    aberto ? "Abrir menu" : "Fechar menu"
+                );
+            });
+
+            menu.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    menu.classList.remove("aberto");
+
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Abrir menu");
+                });
+            });
+
+            document.addEventListener("keydown", (evento) => {
+                if (evento.key === "Escape") {
+                    menu.classList.remove("aberto");
+
+                    menuToggle.setAttribute("aria-expanded", "false");
+                    menuToggle.setAttribute("aria-label", "Abrir menu");
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
